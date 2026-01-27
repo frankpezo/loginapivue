@@ -3,7 +3,7 @@ namespace App\routers;
 
 use App\controllers\LoginController;
 
-class Router{
+class RouterLogin{
     public  static function run():void{
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $method = $_SERVER['REQUEST_METHOD'];

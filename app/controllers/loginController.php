@@ -57,6 +57,7 @@
         return;
       }
 
+      
       $user = $this->model->login($data['correo_user'], $data['password_user']);
       if(!$user){
           $this->json(['status'=>'error', 'msg'=>'Datos no coinciden'], 401);

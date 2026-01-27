@@ -14,12 +14,12 @@
 
     public function create(String $nombre_user, string $correo_user, string $password_user){
         $passwordHash = password_hash($password_user, PASSWORD_BCRYPT);
-        $sql = "INSERT INTO user(nombre_user, correo_user, password_user) VALUES(:nombre,:correo,:pasword)";
+        $sql = "INSERT INTO user(nombre_user, correo_user, password_user) VALUES(:nombre,:correo,:pass)";
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute([
            ':nombre' =>$nombre_user, 
             ':correo'=>$correo_user, 
-           ':password' =>$passwordHash]);
+           ':pass' =>$passwordHash]);
     }
 
     public function login(string $correo_user, string $password_user){
