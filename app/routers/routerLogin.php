@@ -22,6 +22,12 @@ class RouterLogin{
             return;
         }
 
+         if($uri ==='/session' && $method=== 'GET'){
+            (new LoginController())->session();
+            return;
+        }
+        
+
         //POST
         if($uri === '/login' && $method === 'POST'){
             (new LoginController())->login();
@@ -31,6 +37,11 @@ class RouterLogin{
         //POST
         if($uri === '/storeuser' && $method === 'POST'){
             (new LoginController())->store();
+            return;
+        }
+
+        if($uri === '/logout' && $method === 'POST'){
+            (new LoginController())->logout();
             return;
         }
 
