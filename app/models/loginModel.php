@@ -12,6 +12,13 @@
         $this->pdo = Conexion::contectar();
     }
 
+    public function show(){
+        $sql = "SELECT  * FROM user WHERE estado =1";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function create(String $nombre_user, string $correo_user, string $password_user){
         $passwordHash = password_hash($password_user, PASSWORD_BCRYPT);
         $sql = "INSERT INTO user(nombre_user, correo_user, password_user) VALUES(:nombre,:correo,:pass)";

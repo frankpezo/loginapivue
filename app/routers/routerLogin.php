@@ -17,8 +17,14 @@ class RouterLogin{
         $uri = rtrim($uri, '/');
 
         //GET
+        if($uri ==='/users' && $method=== 'GET'){
+            (new LoginController())->show();
+            return;
+        }
+
+        //POST
         if($uri === '/login' && $method === 'POST'){
-            (new LoginController)->login();
+            (new LoginController())->login();
             return;
         }
 

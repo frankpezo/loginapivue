@@ -14,6 +14,18 @@
         $this->modelLog = new AuditoriaLogModel();
      }
 
+
+      public function show():void{
+        $resultado = $this->model->show();
+        if($resultado){
+          $this->json(['status'=>'success', "data"=>$resultado], 200);
+          return;
+        }else{
+            $this->json(["status"=>"error", "msg"=>"Json inválido"], 400);
+          return;
+        }
+      }
+
       public function store():void{
       //Leer json
       $data = json_decode(file_get_contents('php://input'), true);
@@ -35,8 +47,10 @@
 
       if($resultado){
         $this->json(['status'=> 'success', 'msg'=>'Usuario creado con éxito'], 201);
+        return;
       }else{
         $this->json(['status'=> 'error', 'msg'=>'No se pudo crear usuario'], 500);
+        return;
       }
     }
 
