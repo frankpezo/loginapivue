@@ -87,6 +87,34 @@
         $this->json(['status'=>'success','msg'=>'Login correcto'], 200);
     }
 
+
+    public function session():void{
+      session_start();
+
+      if(!isset($_SESSION['id_user'])){
+        $this->json(['authenticated' => false], 401);
+        return;
+      }
+
+      $this->json([
+        'authenticated'=>true,
+        'user'=>[
+          'id_user'=> $_SESSION['id_user'],
+          'nombre_user'=>$_SESSION['nombre_user']
+        ]
+      ],200);
+    }
+
+    public function logout(): void {
+      session_start();
+      session_destroy();
+
+     $this->json([
+      'status' => 'success',
+      'msg' => 'Sesión cerrada correctamente'
+      ], 200);
+  }
+
     //Para que funcione el json
     private function json($data, $statuscode=200):void{
       http_response_code($statuscode);
