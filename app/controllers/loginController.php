@@ -84,7 +84,14 @@
       $_SESSION['nombre_user'] = $user['nombre_user'];
 
       $this->modelLog->registrarLoginLog($user['id_user'], $user['nombre_user'], $_SERVER['REMOTE_ADDR']);
-        $this->json(['status'=>'success','msg'=>'Login correcto'], 200);
+        $this->json([
+      'status'=>'success',
+        'msg'=>'Login correcto',
+          'user'=>[
+            'id_user'=>$user['id_user'],
+            'nombre_user'=>$user['nombre_user']
+          ]
+        ], 200);
     }
 
 
